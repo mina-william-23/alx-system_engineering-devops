@@ -6,8 +6,7 @@
 #Where only the part of the name after the first dash is displayed (refer to the example)
 
 # for f in $(ls | cut -d "-" -f 2)
-for f in $(find . -iname "*-*" | cut -d "-" -f 2)
-do
-	echo "$f"
+list=$(ls)
+for i in $list; do
+  echo "$i" | cut -d '-' -f2
 done
-
