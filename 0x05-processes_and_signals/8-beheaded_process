@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 #  Bash script that kills the process 7-highlander.
 
+# since SIGTERM is handled in 7-highlander
+# so we will send another signal (SIGINT [ctrl + c] or SIGKILL or .... )
 pkill -SIGINT -f "7-highlander"
 
