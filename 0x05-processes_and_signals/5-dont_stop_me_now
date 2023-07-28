@@ -4,6 +4,6 @@
 #Requirements:
 
 #You must use kill
-
+# -f to find the exact string 
 kill "$(pgrep -f "4-to_infinity_and_beyond")"
 
