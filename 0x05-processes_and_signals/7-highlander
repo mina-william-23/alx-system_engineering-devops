@@ -5,6 +5,10 @@
 #With a sleep 2 in between each iteration
 #I am invincible!!! when receiving a SIGTERM signal
 
+# trap wait for signal SIGTERM
+# and if received it will will execute commands between ' '
+# ' ' can be also name of function that executes multi commands
+# ' ' can have multi comamand sepcareted with  ; 
 trap 'echo "I am invincible!!!"' SIGTERM
 
 while true
