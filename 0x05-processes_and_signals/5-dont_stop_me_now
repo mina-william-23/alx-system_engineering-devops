@@ -5,5 +5,5 @@
 
 #You must use kill
 
-kill pidof 4-to_infinity_and_beyond
+kill "$(pgrep "4-to_infinity_and_beyond")"
 
