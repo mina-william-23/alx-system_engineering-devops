@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+# Write a Bash script that displays the visitor IP along with the HTTP status code
+# from the Apache log file.
+
+#Requirement:
+
+#Format: IP HTTP_CODE
+#in a list format
+#185.130.5.207 301
+#185.130.5.207 301
+
+# first sort to make uniq works as expected
+# 'uniq' does not detect repeated lines unless they are adjacent.
+# You may want to sort the input first, or use 'sort -u' without 'uniq'.
+# but sort -u just sort and discard repeated but not count as uniq -c
+# so to take advantage of uniq -c we sort first any sort (doesn't matter)
+# then we finally get unique counted values then sorted again reversed 
+# -n in sort for sorting string as numbers
+awk '{print $1,$9}' apache-access.log | sort | uniq -c | sort -rn 
