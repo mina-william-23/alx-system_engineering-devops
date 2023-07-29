@@ -1,0 +1,45 @@
+#!/usr/bin/env bash
+# Bash (init) script 101-manage_my_process that manages manage_my_process.
+
+PROG_PATH="./manage_my_process" 
+
+start_() {
+        $PROG_PATH &
+        echo $! > /var/run/my_process.pid
+        echo "manage_my_process started"
+}
+stop_() {
+    if [ -f /var/run/my_process.pid ]; then
+	 PID=$(cat /var/run/my_process.pid)
+	 kill "$PID"
+	 rm /var/run/my_process.pid
+	 echo "manage_my_process stopped"
+    fi
+}
+restart_() {
+    if [ -f /var/run/my_process.pid ]; then
+        PID=$(cat /var/run/my_process.pid)
+        kill "$PID"
+        rm  /var/run/my_process.pid
+    fi
+    $PROG_PATH &
+    echo $! > /var/run/my_process.pid
+    echo "manage_my_process restarted"
+}
+
+
+case "$1" in
+    start)
+        start_
+        ;;
+    stop)
+        stop_
+        ;;
+    restart)
+        restart_
+        ;;
+    *)
+        echo "Usage: manage_my_process {start|stop|restart}"
+        exit 1
+        ;;
+esac
