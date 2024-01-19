@@ -4,18 +4,15 @@ package { 'python3.8':
   provider => 'deadsnakes-ppa',
 }
 
-# Install pip3
 package { 'python3-pip':
   ensure => 'installed',
 }
 
-# Install Werkzeug 2.1.1 using pip3
 package { 'werkzeug':
-  ensure   => '2.1.1',
+  ensure   => '2.1.0',
   provider => 'pip3',
 }
 
-# Install Flask 2.1.0 using pip3
 package { 'flask':
   ensure   => '2.1.0',
   provider => 'pip3',
