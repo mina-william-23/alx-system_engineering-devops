@@ -1,8 +1,14 @@
 # Configure SSH client to use private key for authentication
+include stdlib
 
-exec { 'identify_school_private_key':
-  command => `echo "IdentityFile ~/.ssh/school" >> /etc/ssh/ssh_config`,
+file_line { 'Turn off password authentication':
+  path    => '/etc/ssh/ssh_config',
+  line    => 'PasswordAuthentication no',
+  replace => true,
 }
-exec { 'disable_password_ssh_connection':
-  command => `echo "PasswordAuthentication no" >> /etc/ssh/ssh_config`,
+
+file_line { 'Configure private key':
+  path    => '/etc/ssh/ssh_config',
+  line    => 'IdentityFile ~/.ssh/school',
+  replace => true,
 }
