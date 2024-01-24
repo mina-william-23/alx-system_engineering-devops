@@ -8,9 +8,9 @@ if [ "$#" -lt 3 ]; then
     echo "Usage: 0-transfer_file PATH_TO_FILE IP USERNAME PATH_TO_SSH_KEY"
     exit 1  # Exit the script with an error code
 fi
-path = $1
-ip = $2
-username = $3
-ssh_key = $4
+path="$1"
+ip="$2"
+username="$3"
+ssh_key="$4"
 
 scp -i $ssh_key $path $username@$ip:~/
