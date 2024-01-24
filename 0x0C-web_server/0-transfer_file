@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+# This script will transfer a file from one server to another.
+# Usage: Usage: 0-transfer_file PATH_TO_FILE IP USERNAME PATH_TO_SSH_KEY
+
+
+# Check if the number of arguments is less than 3
+if [ "$#" -lt 3 ]; then
+    echo "Usage: 0-transfer_file PATH_TO_FILE IP USERNAME PATH_TO_SSH_KEY"
+    exit 1  # Exit the script with an error code
+fi
+path = $1
+ip = $2
+username = $3
+ssh_key = $4
+
+scp -i $ssh_key $path $username@$ip:~/
