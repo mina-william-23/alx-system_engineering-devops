@@ -9,13 +9,18 @@ service{ 'nginx':
   enable => true,
 }
 
-file_line {'edit_default':
-    ensure  => 'present',
-    path    => '/etc/nginx/sites-enabled/default',
-    before  => 'location / {',
-    line    => 'error_page 404 /404.html;\nlocation = /404.html {internal;}\nlocation /redirect_me {return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;}\n',
-    require => Package['nginx'],
-    notify => Service['nginx'],
+exec {'redirect_me':
+	command => 'sed -i "24i\	location /redirect_me {return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;}" /etc/nginx/sites-available/default',
+	provider => 'shell',
+  require => Package['nginx'],
+  notify => Service['nginx'],
+}
+
+exec {'404-error':
+	command => 'sed -i "24i error_page 404 /custom_404.html;\n" /etc/nginx/sites-available/default" /etc/nginx/sites-available/default',
+	provider => 'shell',
+  require => Package['nginx'],
+  notify => Service['nginx'],
 }
 
 file {'/var/www/html/index.html':
