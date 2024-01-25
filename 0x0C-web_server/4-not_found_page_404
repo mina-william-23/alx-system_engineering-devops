@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+# Creates an nginx web sever
+sudo apt-get update
+sudo apt-get -y install nginx
+sudo ufw allow 'Nginx HTTP'
+sudo chown -R "$USER":"$USER" /var/www/html/index.nginx-debian.html
+sudo chmod -R 755 /var/www 
+echo "Hello World!" > /var/www/html/index.nginx-debian.html
+# edit in place at line 24 of /etc/nginx/sites-available/default
+sudo sed -i '24i\    location /redirect_me {\n        return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;\n    }' /etc/nginx/sites-available/default
+# sudo tee capture priviledge escalation
+echo "Ceci n'est pas une page" | sudo tee /var/www/html/custom_404.html > /dev/null
+sudo sed -i "24i error_page 404 /custom_404.html;\n" /etc/nginx/sites-available/default
+sudo service nginx restart
