@@ -10,7 +10,7 @@ service{ 'nginx':
 }
 
 exec {'redirect_me':
-	command  => 'sed -i "24i\	location /redirect_me {return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;}" /etc/nginx/sites-available/default',
+	command  => 'sed -i "24i location \/redirect_me {return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;}" /etc/nginx/sites-available/default',
 	provider => 'shell',
   require  => Package['nginx'],
   notify   => Service['nginx'],
@@ -24,11 +24,9 @@ exec {'404-error':
 }
 
 file {'/var/www/html/index.html':
-  ensure  => 'present',
   content => 'Hello World!',
 }
 
 file {'/var/www/html/404.html':
-  ensure  => 'present',
   content => "Ceci n'est pas une page",
 }
