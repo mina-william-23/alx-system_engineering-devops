@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# Script to configure load-blancer
+
+apt-get -y update
+apt-get -y install haproxy
+sed -i "s/ENABLED=0/ENABLED=1/g" /etc/default/haproxy
+sed -i "\$ a\listen 385516-lb-01\n\tbind *:80\n\tmode http\n\tstats enable\n\tbalance roundrobin\n\tserver 385516-web-02 54.167.84.94:80 check\n\tserver 385516-web-01 18.207.112.242:80 check" /etc/haproxy/haproxy.cfg
+service haproxy start
