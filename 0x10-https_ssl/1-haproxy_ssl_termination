@@ -1,0 +1,12 @@
+frontend www-http
+        bind *:80
+        bind *:443 ssl crt /etc/haproxy/certs/www.minawilliam.tech.pem
+        http-request redirect scheme https code 301 unless { ssl_fc }
+        http-request set-header X-Forwarded-Proto https
+        default_backend web-backend
+backend web-backend
+        mode http
+        stats enable
+        balance roundrobin
+        server 385516-web-02 54.167.84.94:80 check
+        server 385516-web-01 18.207.112.242:80 check
