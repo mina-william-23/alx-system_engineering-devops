@@ -20,8 +20,8 @@ def export_json(user_id):
 
         for task in todos:
             t = {"task": task.get('title'),
-                "completed": task.get('completed'),
-                "username": employee_username}
+                 "completed": task.get('completed'),
+                 "username": employee_username}
             tasks_list.append(t)
         json.dump(data, json_file)
 
