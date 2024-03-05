@@ -19,7 +19,7 @@ def recurse(subreddit, hot_list=[], after=""):
         params=params,
         allow_redirects=False
     )
-    if req.status_code == 404:
+    if req.status_code != 200:
         return None if not hot_list else hot_list
     res = req.json().get('data')
     after = res.get('after')
