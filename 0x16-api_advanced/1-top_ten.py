@@ -20,7 +20,7 @@ def top_ten(subreddit):
         allow_redirects=False
     )
     if req.status_code != 200:
-        print('None')
+        print('Nonee')
     else:
         res = req.json().get('data').get('children')
         cnt = 0
