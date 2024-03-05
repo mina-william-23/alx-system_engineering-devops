@@ -19,10 +19,8 @@ def top_ten(subreddit):
         params=params,
         allow_redirects=False
     )
-    if sub_info.status_code >= 300:
+    if req.status_code >= 300:
         print('None')
-    # if req.status_code != 200:
-    #     print('None')
     else:
         res = req.json().get('data').get('children')
         for children in res:
