@@ -19,13 +19,11 @@ def top_ten(subreddit):
         params=params,
         allow_redirects=False
     )
-    if req.status_code == 404:
+    if sub_info.status_code >= 300:
         print('None')
+    # if req.status_code != 200:
+    #     print('None')
     else:
         res = req.json().get('data').get('children')
-        cnt = 0
         for children in res:
             print(children.get('data').get('title'))
-            cnt += 1
-            if cnt == 10:
-                break
