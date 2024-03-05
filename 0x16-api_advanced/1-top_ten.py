@@ -19,13 +19,16 @@ def top_ten(subreddit):
         params=params,
         allow_redirects=False
     )
-    if req.status_code != 200:
-        print('Nonee')
-    else:
-        res = req.json().get('data').get('children')
+    # if req.status_code != 200:
+    #    print('None')
+    # else:
+    res = req.json().get('data').get('children')
+    if res:
         cnt = 0
         for children in res:
             print(children.get('data').get('title'))
             cnt += 1
             if cnt == 10:
                 break
+    else:
+        print('None')
