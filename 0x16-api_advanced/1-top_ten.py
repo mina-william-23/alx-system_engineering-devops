@@ -11,7 +11,7 @@ def top_ten(subreddit):
         "User-Agent": "random user"
     }
     params = {
-        "limit": 9
+        "limit": 10
     }
     req = requests.get(
         url='{}/{}'.format(base_url, query),
@@ -23,5 +23,5 @@ def top_ten(subreddit):
         print('None')
     else:
         res = req.json().get('data').get('children')
-        for children in res:
-            print(children.get('data').get('title'))
+        for i in range(10):
+            print(res[i].get('data').get('title'))
