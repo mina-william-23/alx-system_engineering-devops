@@ -11,7 +11,7 @@ def top_ten(subreddit):
         "User-Agent": "random user"
     }
     params = {
-        "limit": 10
+        "limit": 9
     }
     req = requests.get(
         url='{}/{}'.format(base_url, query),
