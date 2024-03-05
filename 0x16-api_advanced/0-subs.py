@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+ #!/usr/bin/python3
 """AdvancedAPI"""
 import requests
 
@@ -14,7 +14,10 @@ def number_of_subscribers(subreddit):
         url='{}/{}'.format(base_url, query),
         headers=headers,
     )
-    if req.status_code != 200:
+    # if req.status_code != 200:
+    #    return 0
+    try :
+        res = req.json()
+        return res.get('data').get('subscribers')
+    except Exception as e:
         return 0
-    res = req.json()
-    return res.get('data').get('subscribers')
