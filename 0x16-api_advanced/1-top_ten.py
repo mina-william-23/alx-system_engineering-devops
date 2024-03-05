@@ -23,5 +23,9 @@ def top_ten(subreddit):
         print('None')
     else:
         res = req.json().get('data').get('children')
-        for i in range(10):
-            print(res[i].get('data').get('title'))
+        cnt = 0
+        for children in res:
+            print(children.get('data').get('title'))
+            cnt += 1
+            if cnt == 10:
+                break
