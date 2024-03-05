@@ -19,7 +19,7 @@ def top_ten(subreddit):
         params=params,
         allow_redirects=False
     )
-    if req.status_code == 404:
+    if req.status_code != 200:
         print('None')
     else:
         res = req.json().get('data').get('children')
