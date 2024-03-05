@@ -26,7 +26,11 @@ def top_ten(subreddit):
     if res:
         cnt = 0
         for children in res:
-            print(children.get('data').get('title'))
+            title = children.get('data').get('title')
+            if title:
+                print(title)
+            else:
+                break
             cnt += 1
             if cnt == 10:
                 break
