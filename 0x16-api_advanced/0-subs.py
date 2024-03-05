@@ -13,8 +13,8 @@ def number_of_subscribers(subreddit):
     req = requests.get(
         url='{}/{}'.format(base_url, query),
         headers=headers,
-        # allow_redirects=False
+        allow_redirects=False
     )
 
     res = req.json().get('data', None).get('subscribers', None)
-    return int(res) if int(res) else 0
+    return res if res else 0
