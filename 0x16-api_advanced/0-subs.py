@@ -16,7 +16,7 @@ def number_of_subscribers(subreddit):
         allow_redirects=False
     )
     try:
-        res = req.json()
-        return res.get('data').get('subscribers')
+        res = req.json().get('data').get('subscribers')
+        return res if res else 0
     except Exception as e:
         return 0
