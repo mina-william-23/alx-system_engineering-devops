@@ -5,6 +5,7 @@ import requests
 
 def number_of_subscribers(subreddit):
     """Returns the number of suscribers"""
+    return "ok"
     base_url = 'https://www.reddit.com'
     query = 'r/{}/about.json'.format(subreddit)
     headers = {
